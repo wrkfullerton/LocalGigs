@@ -1,5 +1,5 @@
 
-var settings = {
+var response = {
     "async": true,
     "crossDomain": true,
     "url": "https://indeed9.p.rapidapi.com/search",
@@ -10,13 +10,14 @@ var settings = {
         "content-type": "application/x-www-form-urlencoded"
     },
     "data": {
-        "page": "1",
+        "pages": "1",
         "position": "Full Stack Web Developer",
-        "city": "Dallas, TX"
+        "city": "75228"
     }
 }
 
-$.ajax(settings).done(function (response) {
+$.ajax(response).done(function (response) {
+
     console.log(response.jobs)
     console.log(response.jobs[0].company);
     console.log(response.jobs[0].job_id);
@@ -55,36 +56,23 @@ $.ajax(settings).done(function (response) {
     console.log(response.jobs[8].location);
     console.log(response.jobs[8].description);
 
+
+    $(document).ready(function () {
+        $("#results").append("<br>" + "<strong>Company: </strong>" + response.jobs[0].company + "<br>");
+        $("#results").append("<br>" + "<strong>Job ID: </strong>" + response.jobs[0].job_id + "<br>");
+        $("#results").append("<br>" + "<strong>Location: </strong>" + response.jobs[0].location + "<br>");
+        $("#results").append("<br>" + "<strong>Description: </strong>" + response.jobs[0].description + "<br>");
+
+    });
+
+
+
+
 });
 
-// }).then(function (response) {
-
-//     var resultsDiv = $("<div class='results'>");
-
-//     var jobs = console.log(response.jobs[0].company);
-
-//     var pOne = $("<p>").text("Results: " + jobs);
-
-//     resultsDiv.append(pOne);
 
 
-// });
 
-// THIS IS FREE BUT REQUIRES THAT YOU SIGN UP FOR A PUBLISHER KEY THROUGH INDEED
-// var settings = {
-// 	"async": true,
-// 	"crossDomain": true,
-// 	"url": "https://indeed-indeed.p.rapidapi.com/apigetjobs?v=2&format=json",
-// 	"method": "GET",
-// 	"headers": {
-// 		"x-rapidapi-host": "indeed-indeed.p.rapidapi.com",
-// 		"x-rapidapi-key": "4baffcd784msh949913134da149ep161ff1jsnabed21be07b4"
-// 	}
-// }
-
-// $.ajax(settings).done(function (response) {
-// 	console.log(response);
-// });
 
 
 
